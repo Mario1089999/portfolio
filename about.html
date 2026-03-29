@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn more about Motasem Kadry — a creative developer focused on building beautiful, functional digital experiences.">
+  <title>About — Motasem Kadry</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { fontFamily: { display: ['Space Grotesk', 'sans-serif'], mono: ['Space Mono', 'monospace'] } } }
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="bg-grid">
+  <div class="cursor-follower" id="cursor" aria-hidden="true"></div>
+  <div class="orb orb-1" aria-hidden="true"></div>
+  <div class="orb orb-2" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-[rgba(10,10,11,0.8)] border-b border-[var(--border)]" id="mainNav">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="font-mono text-lg font-bold tracking-tight" aria-label="Home">
+        <span class="text-[var(--accent)]">&lt;</span>MK<span class="text-[var(--accent)]">/&gt;</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="about.html" class="nav-link font-mono text-sm">About</a>
+        <a href="skills.html" class="nav-link font-mono text-sm">Skills</a>
+        <a href="skills.html#roadmap" class="nav-link font-mono text-sm">Roadmap</a>
+        <a href="projects.html" class="nav-link font-mono text-sm">Projects</a>
+        <a href="contact.html" class="btn-primary text-sm">Let's Talk</a>
+      </div>
+      <button class="md:hidden p-2" id="menuBtn" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu fixed inset-0 z-40 bg-[var(--bg)] flex flex-col items-center justify-center gap-8 md:hidden" id="mobileMenu">
+    <a href="about.html" class="text-2xl font-mono">About</a>
+    <a href="skills.html" class="text-2xl font-mono">Skills</a>
+    <a href="skills.html#roadmap" class="text-2xl font-mono">Roadmap</a>
+    <a href="projects.html" class="text-2xl font-mono">Projects</a>
+    <a href="contact.html" class="btn-primary mt-4">Let's Talk</a>
+  </div>
+
+  <!-- About Section -->
+  <section class="py-32 relative">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="reveal page-header">
+        <p class="font-mono text-[var(--accent)] text-sm mb-2">// About Me</p>
+        <h2 class="text-4xl sm:text-5xl font-bold mb-12">Building the future,<br>one pixel at a time.</h2>
+      </div>
+      <div class="grid lg:grid-cols-2 gap-16">
+        <div class="reveal">
+          <p class="text-lg text-[var(--muted)] leading-relaxed mb-6">I'm a passionate developer with a focus on creating beautiful, functional, and user-centered digital experiences. I'm currently expanding my skillset and diving deep into modern web technologies.</p>
+          <p class="text-lg text-[var(--muted)] leading-relaxed mb-6">My approach combines technical expertise with creative problem-solving. I believe that great software isn't just about clean code — it's about understanding users, business goals, and crafting solutions that exceed expectations.</p>
+          <p class="text-lg text-[var(--muted)] leading-relaxed">Whether it's building responsive interfaces or architecting robust backends, I thrive on turning complex challenges into elegant, intuitive solutions. I'm constantly learning, experimenting, and pushing the boundaries of what's possible on the web.</p>
+        </div>
+        <div class="reveal">
+          <div class="card">
+            <h3 class="font-mono text-[var(--accent)] mb-6">Quick Facts</h3>
+            <div class="space-y-4">
+              <div class="flex justify-between border-b border-[var(--border)] pb-4">
+                <span class="text-[var(--muted)]">Location</span>
+                <span>Your City</span>
+              </div>
+              <div class="flex justify-between border-b border-[var(--border)] pb-4">
+                <span class="text-[var(--muted)]">Education</span>
+                <span>Your University</span>
+              </div>
+              <div class="flex justify-between border-b border-[var(--border)] pb-4">
+                <span class="text-[var(--muted)]">Availability</span>
+                <span class="text-green-400">Open to opportunities</span>
+              </div>
+              <div class="flex justify-between border-b border-[var(--border)] pb-4">
+                <span class="text-[var(--muted)]">Languages</span>
+                <span>EN, AR</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-[var(--muted)]">Interests</span>
+                <span>UI/UX, Open Source</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-8 border-t border-[var(--border)]">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-[var(--muted)] text-sm">Designed & Built by Motasem Kadry</p>
+      <p class="text-[var(--muted)] text-sm font-mono">&copy; 2024 All rights reserved</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
