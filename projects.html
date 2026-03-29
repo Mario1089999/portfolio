@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Featured projects by Motasem Kadry — showcasing web development work and creative builds.">
+  <title>Projects — Motasem Kadry</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Space Grotesk', 'sans-serif'],
+            mono: ['Space Mono', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* === CSS Custom Properties === */
+    :root {
+      --bg: #0a0a0b;
+      --bg-secondary: #111113;
+      --fg: #fafafa;
+      --muted: #71717a;
+      --accent: #22d3ee;
+      --accent-dim: rgba(34, 211, 238, 0.1);
+      --accent-glow: rgba(34, 211, 238, 0.4);
+      --danger: #f43f5e;
+      --card: #18181b;
+      --border: #27272a;
+      --radius: 0.5rem;
+    }
+
+    /* === Reset & Base === */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* === Scrollbar === */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 3px;
+    }
+
+    /* === bg-grid === */
+    .bg-grid {
+      background-image:
+        linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* === orb === */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      will-change: transform;
+      contain: layout style;
+    }
+
+    .orb-1 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+      top: -200px;
+      right: -200px;
+      opacity: 0.4;
+    }
+
+    .orb-2 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, var(--danger) 0%, transparent 70%);
+      bottom: 20%;
+      left: -150px;
+      opacity: 0.2;
+    }
+
+    /* === nav-link === */
+    .nav-link {
+      position: relative;
+      padding: 0.5rem 0;
+      color: var(--muted);
+      transition: color 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--fg);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* === btn-primary === */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: var(--bg);
+      padding: 0.875rem 2rem;
+      font-weight: 600;
+      font-family: inherit;
+      font-size: inherit;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.5s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 40px -10px var(--accent-glow);
+    }
+
+    .btn-primary:hover::before {
+      transform: translateX(100%);
+    }
+
+    /* === project-card === */
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s ease, border-color 0.3s ease;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--danger));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent);
+    }
+
+    .project-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    /* === placeholder-box === */
+    .placeholder-box {
+      border: 1px dashed var(--border);
+      background: rgba(255, 255, 255, 0.02);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.875rem;
+      transition: all 0.3s ease;
+    }
+
+    .placeholder-box:hover {
+      border-color: var(--muted);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    /* === reveal === */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      will-change: opacity, transform;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* === cursor-follower === */
+    .cursor-follower {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      filter: blur(60px);
+      opacity: 0;
+      z-index: 0;
+      will-change: transform;
+      transition: opacity 0.3s ease;
+    }
+
+    .cursor-follower.visible {
+      opacity: 0.15;
+    }
+
+    /* === mobile-menu === */
+    .mobile-menu {
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+
+    /* === Accessibility & Reduced Motion === */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+      .cursor-follower {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-grid">
+
+  <!-- Cursor Follower -->
+  <div class="cursor-follower" id="cursor" aria-hidden="true"></div>
+
+  <!-- Background Orbs -->
+  <div class="orb orb-1" aria-hidden="true"></div>
+  <div class="orb orb-2" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-[rgba(10,10,11,0.8)] border-b border-[var(--border)]" id="mainNav">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="font-mono text-lg font-bold tracking-tight">
+        <span class="text-[var(--accent)]">&lt;</span>MK<span class="text-[var(--accent)]">/&gt;</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-8">
+        <a href="about.html" class="nav-link font-mono text-sm">About</a>
+        <a href="skills.html" class="nav-link font-mono text-sm">Skills</a>
+        <a href="skills.html#roadmap" class="nav-link font-mono text-sm">Roadmap</a>
+        <a href="projects.html" class="nav-link font-mono text-sm">Projects</a>
+        <a href="contact.html" class="btn-primary text-sm">Let's Talk</a>
+      </div>
+
+      <button class="md:hidden p-2" id="menuBtn" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu fixed inset-0 z-40 bg-[var(--bg)] flex flex-col items-center justify-center gap-8 md:hidden" id="mobileMenu">
+    <a href="about.html" class="text-2xl font-mono">About</a>
+    <a href="skills.html" class="text-2xl font-mono">Skills</a>
+    <a href="skills.html#roadmap" class="text-2xl font-mono">Roadmap</a>
+    <a href="projects.html" class="text-2xl font-mono">Projects</a>
+    <a href="contact.html" class="btn-primary mt-4">Let's Talk</a>
+  </div>
+
+  <!-- Projects Section -->
+  <section class="py-32 relative">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="reveal text-center mb-16" style="padding-top: 8rem; padding-bottom: 2rem;">
+        <p class="font-mono text-[var(--accent)] text-sm mb-2">// Projects</p>
+        <h2 class="text-4xl sm:text-5xl font-bold">Featured Work</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="reveal project-card placeholder-box min-h-[300px] flex flex-col items-center justify-center gap-4 p-8 text-center rounded-lg">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="opacity-20">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+            <line x1="12" y1="11" x2="12" y2="17" />
+            <line x1="9" y1="14" x2="15" y2="14" />
+          </svg>
+          <p class="text-sm opacity-50">Add Your First Project</p>
+        </div>
+
+        <div class="reveal project-card placeholder-box min-h-[300px] flex flex-col items-center justify-center gap-4 p-8 text-center rounded-lg">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="opacity-20">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+            <line x1="12" y1="11" x2="12" y2="17" />
+            <line x1="9" y1="14" x2="15" y2="14" />
+          </svg>
+          <p class="text-sm opacity-50">Add Your Second Project</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 border-t border-[var(--border)]">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-[var(--muted)] text-sm">Designed & Built by Motasem Kadry</p>
+      <p class="text-[var(--muted)] text-sm font-mono">&copy; 2024 All rights reserved</p>
+    </div>
+  </footer>
+
+  <script>
+    /**
+     * ========================================
+     * Projects Page — Interactive Scripts
+     * ========================================
+     * Handles:
+     *   1. Scroll-reveal animations via IntersectionObserver
+     *   2. Cursor-following glow effect (desktop only)
+     *   3. Scroll-based nav opacity & parallax orbs
+     *   4. Mobile menu toggle
+     * ========================================
+     */
+
+    /* -----------------------------------------
+       1. Scroll Reveal Animation
+       ----------------------------------------- */
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    document.querySelectorAll('.reveal').forEach((element) => {
+      revealObserver.observe(element);
+    });
+
+    /* -----------------------------------------
+       2. Cursor-Following Glow Effect
+       ----------------------------------------- */
+    const cursorFollower = document.getElementById('cursor');
+
+    if (
+      !window.matchMedia('(hover: none) and (pointer: coarse)').matches &&
+      cursorFollower
+    ) {
+      let currentX = 0;
+      let currentY = 0;
+      let targetX = 0;
+      let targetY = 0;
+
+      document.addEventListener(
+        'mousemove',
+        (event) => {
+          targetX = event.clientX - 150;
+          targetY = event.clientY - 150;
+          cursorFollower.classList.add('visible');
+        },
+        { passive: true }
+      );
+
+      function animateCursor() {
+        currentX += (targetX - currentX) * 0.1;
+        currentY += (targetY - currentY) * 0.1;
+        cursorFollower.style.transform = `translate(${currentX}px, ${currentY}px)`;
+        requestAnimationFrame(animateCursor);
+      }
+
+      animateCursor();
+    }
+
+    /* -----------------------------------------
+       3. Scroll-Based Nav Background & Orb Parallax
+       ----------------------------------------- */
+    const mainNav = document.getElementById('mainNav');
+    const orbElement1 = document.querySelector('.orb-1');
+    const orbElement2 = document.querySelector('.orb-2');
+
+    let scrollAnimationId;
+
+    window.addEventListener(
+      'scroll',
+      () => {
+        cancelAnimationFrame(scrollAnimationId);
+
+        scrollAnimationId = requestAnimationFrame(() => {
+          const scrollPosition = window.pageYOffset;
+
+          if (mainNav) {
+            mainNav.style.background =
+              scrollPosition > 100
+                ? 'rgba(10, 10, 11, 0.95)'
+                : 'rgba(10, 10, 11, 0.8)';
+          }
+
+          if (orbElement1) {
+            orbElement1.style.transform = `translateY(${scrollPosition * 0.1}px)`;
+          }
+
+          if (orbElement2) {
+            orbElement2.style.transform = `translateY(${scrollPosition * -0.05}px)`;
+          }
+        });
+      },
+      { passive: true }
+    );
+
+    /* -----------------------------------------
+       4. Mobile Menu Toggle
+       ----------------------------------------- */
+    const menuButton = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (menuButton && mobileMenu) {
+      menuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('open');
+
+        const isOpen = mobileMenu.classList.contains('open');
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      });
+
+      mobileMenu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('open');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+  </script>
+
+</body>
+</html>
