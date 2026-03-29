@@ -185,5 +185,4 @@ Chrome 49+, Firefox 31+, Safari 10.1+, Edge 15+, Opera 36+
 
 ## License
 
-Designed & Built by Motasem Kadry. © 2026
-All rights reserved.
+Designed & Built by Motasem Kadry. © 2024 All rights reserved.
