@@ -60,38 +60,6 @@ Every HTML file is **100% self-contained**. All CSS is inline, all JavaScript is
 
 ---
 
-## Setting Up the Contact Form (EmailJS)
-
-The contact form uses [EmailJS](https://www.emailjs.com) to send emails directly from the browser — no backend server needed.
-
-### Step 1: Create an EmailJS Account
-Sign up for free at [emailjs.com](https://www.emailjs.com). The free tier includes 200 emails/month.
-
-### Step 2: Create an Email Service
-- Go to **Email Services** → **Add New Service**
-- Choose your provider (Gmail, Outlook, etc.) and connect it
-- Copy the **Service ID**
-
-### Step 3: Create an Email Template
-- Go to **Email Templates** → **Create New Template**
-- Use these template variables:
-
-| Variable | Content |
-|---|---|
-| `{{from_name}}` | Sender's name |
-| `{{from_email}}` | Sender's email |
-| `{{subject}}` | Message subject |
-| `{{message}}` | Message body |
-
-- Set the **To** address to your personal email
-- Copy the **Template ID**
-
-### Step 4: Get Your Public Key
-- Go to **Account** → **API Keys**
-- Copy your **Public Key**
-
-### Step 5: Update contact.html
-Open `contact.html` and replace the three constants near the top of the inline script:
 
 ```javascript
 const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';    // e.g. 'xYz123AbCd'
